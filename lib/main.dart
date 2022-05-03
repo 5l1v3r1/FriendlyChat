@@ -5,6 +5,8 @@ void main() {
   runApp(const MyApp());
 }
 
+String _name = 'Marina Sam';
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -52,10 +54,10 @@ class ChatScreen extends StatefulWidget {
 }
 
 //Prefixing an identifier with an underscore (_) makes the identifier private to its library
-class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
+class _ChatScreenState extends State<ChatScreen> {
   @override
-  final _textController = TextEditingController();
   final List<ChatMessage> _messages = [];
+  final _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   bool _isComposing = false;
 
@@ -128,10 +130,9 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     _textController.clear();
     var message = ChatMessage(
       text: text,
-
     );
     setState(() {
-      _isComposing = false;
+      _messages.insert(0, message);
     });
     _focusNode.requestFocus();
   }
@@ -143,7 +144,7 @@ class ChatMessage extends StatelessWidget {
       {required this.text, Key? key})
       : super(key: key);
   final String text;
-  final String _name = 'Your name';
+
 
 
   @override
@@ -161,7 +162,7 @@ class ChatMessage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(_name, style: Theme.of(context).textTheme.headline4),
+                  Text(_name, style: Theme.of(context).textTheme.headline1),
                   Container(
                     margin: EdgeInsets.only(top: 5.0),
                     child: Text(text),

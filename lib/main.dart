@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return FriendlyChatApp();
+    return const FriendlyChatApp();
   }
 }
 
@@ -41,7 +41,7 @@ class FriendlyChatApp extends StatelessWidget {
           foregroundColor: Colors.lightBlueAccent,
         ),
       ),
-      home: ChatScreen(),
+      home: const ChatScreen(),
     );
   }
 }
@@ -55,15 +55,15 @@ class ChatScreen extends StatefulWidget {
 
 //Prefixing an identifier with an underscore (_) makes the identifier private to its library
 class _ChatScreenState extends State<ChatScreen> {
-  @override
   final List<ChatMessage> _messages = [];
   final _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   bool _isComposing = false;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Me, myself and I')),
+      appBar: AppBar(title: const Text('Me, myself and I')),
       // returns a widget that encapsulates the text input field
       body: Column(
         children: [
@@ -156,15 +156,15 @@ class ChatMessage extends StatelessWidget {
           children: [
             Container(
               margin: const EdgeInsets.only(right: 16.0),
-              child: CircleAvatar(child: Text(_name[0])),
+              child: CircleAvatar(backgroundColor: Colors.brown.shade800,child: Text(_name[0],)),
             ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(_name, style: Theme.of(context).textTheme.headline1),
+                  Text(_name, style: Theme.of(context).textTheme.headline5,textAlign: TextAlign.justify),
                   Container(
-                    margin: EdgeInsets.only(top: 5.0),
+                    margin: const EdgeInsets.only(top: 5.0),
                     child: Text(text),
                   ),
                 ],
